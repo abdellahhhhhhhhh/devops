@@ -54,7 +54,13 @@ router.post('/add', upload.single('imageExoplanet'), function (req, res, next) {
 /* GET search exoplanet. */
 router.get('/search', function (req, res, next) {
     console.log("GET SEARCH EXOPLANET");
-    let { exoplanetsTable, min3charOK } = searchExoplanetFunction(req);
+    const uniqueNameExoplanetParam = req.query.uniqueNameExoplanet;
+    let min3charOK = false;
+    let exoplanetsTable = null;
+    if (uniqueNameExoplanetParam.length >= 3) {
+        min3charOK = true;
+        exoplanetsTable = Exoplanet.search(uniqueNameExoplanetParam);
+    }
     res.render('exoplanets/index.hbs', { exoplanetsTable, min3charOK });
 });
 
@@ -107,14 +113,6 @@ router.get('/update', function (req, res, next) {
 /* POST update exoplanet. */
 router.post('/update', function (req, res, next) {
     console.log("POST UPDATE EXOPLANET");
-    save(req);
-    res.redirect('/exoplanets');
-});
-
-
-module.exports = router;
-
-function save(req) {
     Exoplanet.save({
         id: parseInt(req.body.idExoplanet),
         uniqueName: req.body.uniqueNameExoplanet,
@@ -123,16 +121,9 @@ function save(req) {
         IST: parseFloat(req.body.ISTExoplanet),
         pClass: req.body.pClassExoplanet
     });
-}
 
-function searchExoplanetFunction(req) {
-    const uniqueNameExoplanetParam = req.query.uniqueNameExoplanet;
-    let min3charOK = false;
-    let exoplanetsTable = null;
-    if (uniqueNameExoplanetParam.length >= 3) {
-        min3charOK = true;
-        exoplanetsTable = Exoplanet.search(uniqueNameExoplanetParam);
-    }
-    return { exoplanetsTable, min3charOK };
-}
+    res.redirect('/exoplanets');
+});
 
+
+module.exports = router;
