@@ -8,6 +8,10 @@ function getSimpleMinutesRow(minutes) {
     ).join("");
   }
   
-  module.exports = { getSimpleMinutesRow, getFiveMinutesRow };
+  function getSimpleHoursRow(hours) {
+    return "R".repeat(hours % 5).padEnd(4, "O");
+  }
   
+  module.exports = { getSimpleMinutesRow, getFiveMinutesRow, getSimpleHoursRow };
+    
   
