@@ -11,7 +11,17 @@ function getSimpleMinutesRow(minutes) {
   function getSimpleHoursRow(hours) {
     return "R".repeat(hours % 5).padEnd(4, "O");
   }
+
+  function getFiveHoursRow(hours) {
+    return "R".repeat(Math.floor(hours / 5)).padEnd(4, "O");
+  }
   
-  module.exports = { getSimpleMinutesRow, getFiveMinutesRow, getSimpleHoursRow };
+  module.exports = {
+    getSimpleMinutesRow,
+    getFiveMinutesRow,
+    getSimpleHoursRow,
+    getFiveHoursRow,  // Ajout de cette fonction ici
+  }
+  
     
   

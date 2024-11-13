@@ -1,4 +1,10 @@
-const { getSimpleMinutesRow, getFiveMinutesRow, getSimpleHoursRow } = require('../src/berlinClock');
+const {
+  getSimpleMinutesRow,
+  getFiveMinutesRow,
+  getSimpleHoursRow,
+  getFiveHoursRow,
+} = require('../src/berlinClock');
+
 
 //etape 1
 test('Ligne des simples minutes pour 3 minutes', () => {
@@ -25,4 +31,17 @@ test('Ligne des heures simples pour 3 heures', () => {
 
 test('Ligne des heures simples pour 4 heures', () => {
   expect(getSimpleHoursRow(4)).toBe("RRRR");
+});
+
+/* Etape 4 */
+test('Ligne des blocs de 5 heures pour 10 heures', () => {
+  expect(getFiveHoursRow(10)).toBe("RROO");
+});
+
+test('Ligne des blocs de 5 heures pour 23 heures', () => {
+  expect(getFiveHoursRow(23)).toBe("RRRR");
+});
+
+test('Ligne des blocs de 5 heures pour 4 heures', () => {
+  expect(getFiveHoursRow(4)).toBe("OOOO");
 });
