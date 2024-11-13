@@ -20,13 +20,17 @@ function getSimpleMinutesRow(minutes) {
     return seconds % 2 === 0 ? "Y" : "O";
   }
   
-  module.exports = {
-     getSimpleMinutesRow,
-     getFiveMinutesRow,
-     getSimpleHoursRow,
-     getFiveHoursRow,
-     getSecondsLamp
-  };
+  function getBerlinClockTime(hours, minutes, seconds) {
+    return [
+      getSecondsLamp(seconds),
+      getFiveHoursRow(hours),
+      getSimpleHoursRow(hours),
+      getFiveMinutesRow(minutes),
+      getSimpleMinutesRow(minutes)
+    ].join("\n");
+  }
+  
+  module.exports = { getSimpleMinutesRow, getFiveMinutesRow, getSimpleHoursRow, getFiveHoursRow, getSecondsLamp, getBerlinClockTime };
   
     
   

@@ -1,10 +1,12 @@
-const { 
+const {
   getSimpleMinutesRow,
   getFiveMinutesRow,
   getSimpleHoursRow,
   getFiveHoursRow,
-  getSecondsLamp 
+  getSecondsLamp,
+  getBerlinClockTime
 } = require('../src/berlinClock');
+
 
 
 //etape 1
@@ -55,4 +57,31 @@ test('Lampe des secondes pour une seconde paire', () => {
 
 test('Lampe des secondes pour une seconde impaire', () => {
   expect(getSecondsLamp(1)).toBe("O");
+});
+
+// Etape 7
+
+
+test('Horloge de Berlin pour 00:00:00', () => {
+  expect(getBerlinClockTime(0, 0, 0)).toBe(
+    "Y\nOOOO\nOOOO\nOOOOOOOOOOO\nOOOO"
+  );
+});
+
+test('Horloge de Berlin pour 13:17:01', () => {
+  expect(getBerlinClockTime(13, 17, 1)).toBe(
+    "O\nRROO\nRRRO\nYYROOOOOOOO\nYYOO"
+  );
+});
+
+test('Horloge de Berlin pour 23:59:59', () => {
+  expect(getBerlinClockTime(23, 59, 59)).toBe(
+    "O\nRRRR\nRRRO\nYYRYYRYYRYY\nYYYY"
+  );
+});
+
+test('Horloge de Berlin pour 24:00:00', () => {
+  expect(getBerlinClockTime(24, 0, 0)).toBe(
+    "Y\nRRRR\nRRRR\nOOOOOOOOOOO\nOOOO"
+  );
 });
