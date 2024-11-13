@@ -1,8 +1,9 @@
-const {
+const { 
   getSimpleMinutesRow,
   getFiveMinutesRow,
   getSimpleHoursRow,
   getFiveHoursRow,
+  getSecondsLamp 
 } = require('../src/berlinClock');
 
 
@@ -44,4 +45,14 @@ test('Ligne des blocs de 5 heures pour 23 heures', () => {
 
 test('Ligne des blocs de 5 heures pour 4 heures', () => {
   expect(getFiveHoursRow(4)).toBe("OOOO");
+});
+
+/* Etape 6*/
+
+test('Lampe des secondes pour une seconde paire', () => {
+  expect(getSecondsLamp(2)).toBe("Y");
+});
+
+test('Lampe des secondes pour une seconde impaire', () => {
+  expect(getSecondsLamp(1)).toBe("O");
 });

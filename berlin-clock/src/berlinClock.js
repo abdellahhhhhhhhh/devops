@@ -15,13 +15,18 @@ function getSimpleMinutesRow(minutes) {
   function getFiveHoursRow(hours) {
     return "R".repeat(Math.floor(hours / 5)).padEnd(4, "O");
   }
+
+  function getSecondsLamp(seconds) {
+    return seconds % 2 === 0 ? "Y" : "O";
+  }
   
   module.exports = {
-    getSimpleMinutesRow,
-    getFiveMinutesRow,
-    getSimpleHoursRow,
-    getFiveHoursRow,  // Ajout de cette fonction ici
-  }
+     getSimpleMinutesRow,
+     getFiveMinutesRow,
+     getSimpleHoursRow,
+     getFiveHoursRow,
+     getSecondsLamp
+  };
   
     
   
